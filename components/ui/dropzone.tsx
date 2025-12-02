@@ -9,6 +9,7 @@ import {
   useReducer,
   useState,
 } from "react";
+import { nanoid } from "nanoid";
 import {
   Accept,
   FileRejection,
@@ -348,7 +349,7 @@ const useDropzone = <TUploadRes, TUploadError = string>(
           await onRemoveFile(fileStatuses[index].id);
         }
 
-        const id = crypto.randomUUID();
+        const id = nanoid();
         dispatch({ type: "add", fileName: file.name, file, id });
         await _uploadFile(file, id);
       });
